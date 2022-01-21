@@ -1,21 +1,20 @@
-
-# ·şÎñÆ÷¶Ë¿Ú
+# æœåŠ¡å™¨ç«¯å£
 server:
   port: 8888
 
-# Spring Boot µÄÊı¾İÔ´ÅäÖÃ
+# Spring Boot çš„æ•°æ®æºé…ç½®
 spring:
   redis:
     database: 9
-    host: 172.16.29.66         # Redis·şÎñÆ÷µØÖ·
-    port: 6009              # Redis·şÎñÆ÷Á¬½Ó¶Ë¿Ú
-    timeout: 100000           # Á¬½Ó³¬Ê±Ê±¼ä£¨ºÁÃë£©
+    host: 172.16.29.66         # RedisæœåŠ¡å™¨åœ°å€
+    port: 6009              # RedisæœåŠ¡å™¨è¿æ¥ç«¯å£
+    timeout: 100000           # è¿æ¥è¶…æ—¶æ—¶é—´ï¼ˆæ¯«ç§’ï¼‰
   datasource:
     url: jdbc:mysql://localhost:3306/use_redis?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
-    # Ê¹ÓÃdruidÊı¾İÔ´
+    # ä½¿ç”¨druidæ•°æ®æº
     type: com.alibaba.druid.pool.DruidDataSource
     filters: stat
     maxActive: 20
@@ -31,19 +30,26 @@ spring:
     poolPreparedStatements: true
     maxPoolPreparedStatementPerConnectionSize: 20
     maxOpenPreparedStatements: 20
+  rabbitmq:
+    host: 172.16.29.19
+    port: 5672
+    username: admin
+    password: admin
+  kafka:
+    bootstrap-servers: 172.16.29.61:6667
 
 
 mybatis-plus:
-  # xmlÉ¨Ãè£¬¶à¸öÄ¿Â¼ÓÃ¶ººÅ»òÕß·ÖºÅ·Ö¸ô£¨¸æËß Mapper Ëù¶ÔÓ¦µÄ XML ÎÄ¼şÎ»ÖÃ£©
+  # xmlæ‰«æï¼Œå¤šä¸ªç›®å½•ç”¨é€—å·æˆ–è€…åˆ†å·åˆ†éš”ï¼ˆå‘Šè¯‰ Mapper æ‰€å¯¹åº”çš„ XML æ–‡ä»¶ä½ç½®ï¼‰
   mapper-locations: classpath:mapper/*.xml
   global-config:
-    #×Ö¶Î²ßÂÔ 0:"ºöÂÔÅĞ¶Ï",1:"·Ç NULL ÅĞ¶Ï"),2:"·Ç¿ÕÅĞ¶Ï"
+    #å­—æ®µç­–ç•¥ 0:"å¿½ç•¥åˆ¤æ–­",1:"é NULL åˆ¤æ–­"),2:"éç©ºåˆ¤æ–­"
     field-strategy: 1
   configuration:
-    # ÊÇ·ñ½«sql´òÓ¡µ½¿ØÖÆÃæ°å(¸ÃÅäÖÃ»á½«sqlÓï¾äºÍ²éÑ¯µÄ½á¹û¶¼´òÓ¡µ½¿ØÖÆÌ¨)
+    # æ˜¯å¦å°†sqlæ‰“å°åˆ°æ§åˆ¶é¢æ¿(è¯¥é…ç½®ä¼šå°†sqlè¯­å¥å’ŒæŸ¥è¯¢çš„ç»“æœéƒ½æ‰“å°åˆ°æ§åˆ¶å°)
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-# PageHelper·ÖÒ³²å¼ş
+# PageHelperåˆ†é¡µæ’ä»¶
 pagehelper:
   helperDialect: mysql
   reasonable: true

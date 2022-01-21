@@ -3,10 +3,11 @@ package com.redisdata.gq.controller;
 import com.redisdata.gq.service.DataDealService;
 import com.redisdata.gq.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,5 +29,32 @@ public class DataController {
         return Result.success(mapList);
     }
 
+
+    @PostMapping("/test")
+    public Result test(@RequestBody String json, HttpServletRequest request) {
+//        System.out.println(getHeadersInfo(request));
+        System.out.println(json);
+        return Result.success();
+    }
+
+    /**
+     * 描述:获取请求头内容
+     */
+    private String getHeadersInfo(HttpServletRequest request) {
+        Map<String, String> map = new HashMap<String, String>();
+        Enumeration headerNames = request.getHeaderNames();
+        while (headerNames.hasMoreElements()) {
+            String key = (String) headerNames.nextElement();
+            String value = request.getHeader(key);
+            map.put(key, value);
+        }
+
+        String result="";
+        for (String key : map.keySet()) {
+            //System.out.println("key= "+ key + " and value= " + map.get(key));
+            result = result + "key= "+ key + " and value= " + map.get(key)+"\n";
+        }
+        return result;
+    }
 
 }
